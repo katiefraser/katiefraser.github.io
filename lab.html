@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LENS Lab — Language, Ethics, and Neural Systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16130f;
+    --paper:#fcfaf4;
+    --red:#e5372b;
+    --blue:#2e83be;
+    --green:#6fa32c;
+    --yellow:#ffc42e;
+    --shadow:5px 5px 0 var(--ink);
+    --shadow-sm:3px 3px 0 var(--ink);
+  }
+
+  *{box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Public Sans",system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    /* halftone wash across the whole page, very faint */
+    background-image:radial-gradient(var(--ink) 0.6px, transparent 0.7px);
+    background-size:14px 14px;
+    background-attachment:fixed;
+    background-blend-mode:normal;
+  }
+  body::before{
+    /* lighten the dot texture so text stays readable */
+    content:"";
+    position:fixed;inset:0;
+    background:var(--paper);
+    opacity:0.93;
+    z-index:-1;
+  }
+
+  a{color:inherit;}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--paper);
+    border-bottom:3px solid var(--ink);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px;height:68px;
+  }
+  .wordmark{
+    font-family:"Bungee",cursive;
+    font-size:26px;letter-spacing:1px;color:var(--red);
+    text-decoration:none;line-height:1;
+  }
+  .wordmark span{color:var(--ink);}
+  .nav-links{display:flex;align-items:center;gap:28px;}
+  .nav-links a{
+    text-decoration:none;font-weight:600;font-size:15px;
+    padding:4px 2px;border-bottom:3px solid transparent;
+  }
+  .nav-links a:hover,.nav-links a:focus-visible{border-bottom-color:var(--yellow);}
+  .nav-cta{
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:14px;
+    background:var(--ink);color:var(--paper);
+    text-decoration:none;padding:9px 16px;border:3px solid var(--ink);
+    box-shadow:var(--shadow-sm);
+  }
+  .nav-cta:hover,.nav-cta:focus-visible{background:var(--red);}
+  .menu-toggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:84px 0 72px;
+    border-bottom:3px solid var(--ink);
+    position:relative;overflow:hidden;
+  }
+  .hero-eyebrow{
+    font-family:"Bungee",cursive;font-size:13px;letter-spacing:2px;
+    color:var(--blue);margin-bottom:22px;
+  }
+  .hero h1{
+    font-family:"Bungee",cursive;
+    font-size:clamp(56px,12vw,140px);
+    line-height:0.92;margin:0;letter-spacing:1px;
+    color:var(--ink);
+    text-shadow:4px 4px 0 var(--yellow);
+  }
+  .hero h1 .l{color:var(--red);}
+  .hero h1 .e{color:var(--blue);}
+  .hero h1 .n{color:var(--green);}
+  .hero h1 .s{color:var(--ink);}
+  .hero-tag{
+    font-family:"Bricolage Grotesque",sans-serif;
+    font-weight:700;font-size:clamp(22px,3.4vw,34px);
+    margin:26px 0 0;max-width:18ch;line-height:1.15;
+  }
+  /* the "focus" word literally comes into focus on load */
+  .focusword{
+    color:var(--red);position:relative;white-space:nowrap;
+    animation:sharpen 1.5s ease-out both;
+  }
+  @keyframes sharpen{
+    0%{filter:blur(7px);opacity:0.4;letter-spacing:3px;}
+    100%{filter:blur(0);opacity:1;letter-spacing:0;}
+  }
+  .hero-sub{margin:22px 0 0;max-width:54ch;font-size:18px;}
+  .hero-pi{
+    margin-top:30px;display:inline-flex;align-items:center;gap:14px;
+    font-weight:600;
+  }
+  .hero-pi .dot{width:13px;height:13px;border-radius:50%;background:var(--green);border:2px solid var(--ink);}
+  /* decorative halftone burst, hidden from AT */
+  .hero-burst{
+    position:absolute;right:-120px;top:-60px;width:360px;height:360px;
+    background:radial-gradient(var(--blue) 2px,transparent 2.5px);
+    background-size:18px 18px;opacity:0.5;
+    border-radius:50%;
+    -webkit-mask-image:radial-gradient(circle,#000 60%,transparent 70%);
+            mask-image:radial-gradient(circle,#000 60%,transparent 70%);
+    pointer-events:none;
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:78px 0;border-bottom:3px solid var(--ink);}
+  .sec-head{margin-bottom:40px;}
+  .sec-label{
+    display:inline-block;
+    font-family:"Bungee",cursive;font-size:12px;letter-spacing:2px;
+    background:var(--yellow);border:3px solid var(--ink);
+    padding:6px 12px;box-shadow:var(--shadow-sm);margin-bottom:18px;
+  }
+  .sec-head h2{
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:800;
+    font-size:clamp(32px,5vw,52px);line-height:1.02;margin:0;max-width:18ch;
+  }
+  .sec-head p{margin:16px 0 0;max-width:60ch;font-size:18px;}
+  .papers-btn{
+    display:inline-flex;align-items:center;gap:9px;margin-top:24px;
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:16px;
+    text-decoration:none;background:var(--red);color:#fff;
+    padding:13px 22px;border:3px solid var(--ink);box-shadow:var(--shadow);
+    transition:transform .14s ease, box-shadow .14s ease;
+  }
+  .papers-btn:hover,.papers-btn:focus-visible{
+    transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink);background:#cf2c20;
+  }
+  .papers-btn .arr{font-family:"Bungee",cursive;font-size:13px;}
+
+  /* ---------- RESEARCH PANELS ---------- */
+  .panels{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:26px;
+  }
+  .panel{
+    background:#fff;border:3px solid var(--ink);box-shadow:var(--shadow);
+    display:flex;flex-direction:column;
+    transition:transform .14s ease, box-shadow .14s ease;
+  }
+  .panel:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink);}
+  .panel-top{
+    padding:18px 22px;border-bottom:3px solid var(--ink);
+    display:flex;align-items:center;gap:12px;
+    background-image:radial-gradient(rgba(0,0,0,.16) 1px,transparent 1.4px);
+    background-size:10px 10px;
+  }
+  .panel-top h3{
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:800;
+    font-size:21px;line-height:1.05;margin:0;
+  }
+  .panel-body{padding:22px;}
+  .panel-body p{margin:0 0 14px;}
+  .panel-body p:last-child{margin-bottom:0;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .tag{
+    font-size:13px;font-weight:600;background:var(--paper);
+    border:2px solid var(--ink);padding:3px 9px;
+  }
+  .c-green .panel-top{background-color:var(--green);}
+  .c-blue  .panel-top{background-color:var(--blue);color:#fff;}
+  .c-yellow .panel-top{background-color:var(--yellow);}
+  .c-red   .panel-top{background-color:var(--red);color:#fff;}
+
+  /* ---------- CURRENT STUDENTS ---------- */
+  .people-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:26px;
+  }
+  .person{
+    background:#fff;border:3px solid var(--ink);box-shadow:var(--shadow-sm);
+    overflow:hidden;
+  }
+  .person-photo{
+    aspect-ratio:1/1;border-bottom:3px solid var(--ink);
+    background:var(--blue);
+    background-image:radial-gradient(rgba(255,255,255,.45) 2px,transparent 2.5px);
+    background-size:20px 20px;
+    display:grid;place-items:center;
+  }
+  .person:nth-child(3n+2) .person-photo{background-color:var(--green);}
+  .person:nth-child(3n) .person-photo{background-color:var(--red);}
+  .person-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .person-photo .ph{
+    font-family:"Bungee",cursive;font-size:13px;color:#fff;
+    background:rgba(0,0,0,.55);padding:6px 12px;letter-spacing:1px;
+  }
+  .person-info{padding:18px 20px;}
+  .person-info h4{
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:800;
+    font-size:19px;margin:0;
+  }
+  .role-chip{
+    display:inline-block;font-size:12px;font-weight:700;letter-spacing:.5px;
+    text-transform:uppercase;margin:8px 0 12px;
+    border:2px solid var(--ink);padding:2px 8px;background:var(--yellow);
+  }
+  .person-info p{margin:0;font-size:15px;color:#3a352d;}
+
+  /* ---------- ALUMNI ---------- */
+  .alumni{margin-top:14px;border:3px solid var(--ink);background:#fff;box-shadow:var(--shadow);}
+  .alum-row{
+    display:flex;justify-content:space-between;align-items:baseline;gap:18px;
+    padding:16px 22px;border-bottom:2px solid var(--ink);
+    flex-wrap:wrap;
+  }
+  .alum-row:last-child{border-bottom:none;}
+  .alum-row .name{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:18px;}
+  .alum-row .now{font-size:15px;color:#3a352d;}
+  .alum-row .now b{color:var(--ink);font-weight:700;}
+  .alum-row .deg{
+    font-size:12px;font-weight:700;border:2px solid var(--ink);padding:1px 7px;
+    margin-left:10px;background:var(--paper);white-space:nowrap;
+  }
+
+  /* ---------- JOIN ---------- */
+  .join{
+    background:var(--ink);color:var(--paper);border-bottom:none;
+    background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1.4px);
+    background-size:16px 16px;
+  }
+  .join .sec-label{background:var(--red);color:#fff;border-color:var(--paper);box-shadow:3px 3px 0 var(--yellow);}
+  .join .sec-head h2{color:var(--paper);}
+  .join-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-bottom:38px;}
+  .join-card{border:3px solid var(--paper);padding:26px;background:rgba(255,255,255,.04);}
+  .join-card h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:24px;margin:0 0 10px;}
+  .join-card.u h3{color:var(--yellow);}
+  .join-card.g h3{color:var(--blue);}
+  .join-card p{margin:0;color:#ece7dc;}
+  .apply{
+    border:3px solid var(--paper);padding:30px;display:flex;
+    align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+    background:rgba(255,255,255,.04);
+  }
+  .apply p{margin:0;max-width:52ch;color:#ece7dc;}
+  .apply b{color:var(--yellow);}
+  .apply a.btn{
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:16px;
+    background:var(--yellow);color:var(--ink);text-decoration:none;
+    padding:14px 22px;border:3px solid var(--paper);box-shadow:5px 5px 0 var(--red);
+    white-space:nowrap;
+  }
+  .apply a.btn:hover,.apply a.btn:focus-visible{background:#fff;}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:40px 0;font-size:15px;}
+  .foot-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;}
+  .foot-inner a{font-weight:600;}
+
+  /* ---------- FOCUS / ACCESSIBILITY ---------- */
+  a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offset:3px;}
+
+  @media (max-width:880px){
+    .panels{grid-template-columns:1fr;}
+    .people-grid{grid-template-columns:1fr 1fr;}
+    .join-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:620px){
+    .nav-links{
+      display:none;position:absolute;top:68px;left:0;right:0;
+      flex-direction:column;align-items:flex-start;gap:0;
+      background:var(--paper);border-bottom:3px solid var(--ink);padding:8px 24px 16px;
+    }
+    .nav-links.open{display:flex;}
+    .nav-links a{padding:12px 0;border-bottom:none;width:100%;}
+    .menu-toggle{
+      display:grid;place-items:center;width:42px;height:42px;
+      background:var(--ink);color:var(--paper);border:3px solid var(--ink);
+      box-shadow:var(--shadow-sm);font-size:20px;cursor:pointer;
+    }
+    .people-grid{grid-template-columns:1fr;}
+    .apply{flex-direction:column;align-items:flex-start;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="wordmark" href="#top">LE<span>NS</span> LAB</a>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" id="menuBtn">≡</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#research">Research</a>
+      <a href="#people">People</a>
+      <a href="#alumni">Alumni</a>
+      <a class="nav-cta" href="#join">Join the lab</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-burst" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-eyebrow">LANGUAGE · ETHICS · NEURAL SYSTEMS</div>
+    <h1><span class="l">L</span><span class="e">E</span><span class="n">N</span><span class="s">S</span></h1>
+    <p class="hero-tag">Bringing responsible AI into&nbsp;<span class="focusword">focus.</span></p>
+    <p class="hero-sub">We study how language reveals what models — and brains — are really doing: where AI systems are biased, where they break, where they can heal, and how to make them safe.</p>
+    <div class="hero-pi">
+      <span class="dot" aria-hidden="true"></span>
+      Led by Dr. Kathleen Fraser · University of Ottawa
+    </div>
+  </div>
+</header>
+
+<!-- ===================== RESEARCH ===================== -->
+<section id="research">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-label">RESEARCH</span>
+      <h2>Six fronts on responsible AI.</h2>
+      <p>Changes in the brain show up in language, and so do the failures of AI systems. Both are subtle, repetitive, and detailed — exactly the kind of signal computers can help us read. Here is where the lab digs in.</p>
+      <a class="papers-btn" href="https://scholar.google.ca/citations?user=uGeC7NMAAAAJ&hl=en" target="_blank" rel="noopener">Read the papers <span class="arr">→</span></a>
+    </div>
+
+    <div class="panels">
+
+      <article class="panel c-green">
+        <div class="panel-top"><h3>Bias in generative models</h3></div>
+        <div class="panel-body">
+          <p>Generative systems carry their training data's prejudices. Ask for a portrait of a "lawyer" versus a "felon" and the racial and gender skew is stark; ask a multimodal model whether an image shows a doctor or a nurse and the answer can flip with the person depicted, even when every other cue is identical.</p>
+          <p>We work on the biases that get less attention — religion, socioeconomic status — along with mitigation methods and how bias propagates into downstream applications.</p>
+          <div class="tags"><span class="tag">Image generation</span><span class="tag">Multimodal reasoning</span><span class="tag">Mitigation</span></div>
+        </div>
+      </article>
+
+      <article class="panel c-blue">
+        <div class="panel-top"><h3>AI safety &amp; evaluation</h3></div>
+        <div class="panel-body">
+          <p>Models ship at incredible speed; rigorous safety evaluation lags behind. We ask how a model's safety profile shifts after fine-tuning or RAG, why chatbots grow less safe over long conversations, and how to measure that drift.</p>
+          <p>We also chase the subtler failures — deception, persuasion, behavioural manipulation — and ask the harder follow-up: how do we actually make models safer?</p>
+          <div class="tags"><span class="tag">Fine-tuning effects</span><span class="tag">Long conversations</span><span class="tag">Deception &amp; persuasion</span></div>
+        </div>
+      </article>
+
+      <article class="panel c-yellow">
+        <div class="panel-top"><h3>Detecting AI-generated content</h3></div>
+        <div class="panel-body">
+          <p>Clean, well-behaved AI text is easy to flag. But when we fine-tune models on real social media data, the output stops looking like a machine — and in our studies, neither commercial detectors nor human readers could tell it apart from genuine posts.</p>
+          <p>We study where detection holds up, where it quietly fails, and what that means for trust online.</p>
+          <div class="tags"><span class="tag">Detector robustness</span><span class="tag">Social media</span><span class="tag">Human evaluation</span></div>
+        </div>
+      </article>
+
+      <article class="panel c-red">
+        <div class="panel-top"><h3>Technical innovations for safe AI</h3></div>
+        <div class="panel-body">
+          <p>Evaluation is only half the equation — building safe systems takes new methods. We open up the black box to understand, steer, and align large language models.</p>
+          <p>Tools we build and study include model merging, safety-subspace projection, machine unlearning, and reinforcement learning, among others.</p>
+          <div class="tags"><span class="tag">Model merging</span><span class="tag">Unlearning</span><span class="tag">Subspace projection</span><span class="tag">RL</span></div>
+        </div>
+      </article>
+
+      <article class="panel c-blue">
+        <div class="panel-top"><h3>Language processing in healthcare</h3></div>
+        <div class="panel-body">
+          <p>When something changes in the brain, it often surfaces in how a person speaks and moves. Those signals are faint and benefit from repeated, detailed analysis — where computational methods excel.</p>
+          <p>Current threads: detecting signs of dementia such as Alzheimer's through speech and eye-movement patterns, predicting migraine onset from language, and understanding long COVID through how people tell stories.</p>
+          <div class="tags"><span class="tag">Dementia</span><span class="tag">Migraine</span><span class="tag">Long COVID</span></div>
+        </div>
+      </article>
+
+      <article class="panel c-green">
+        <div class="panel-top"><h3>Social &amp; cognitive impacts of AI</h3></div>
+        <div class="panel-body">
+          <p>As AI works its way into daily life, what happens to our social lives, our language, our cognition? And how can its benefits be shared fairly and inclusively rather than concentrated?</p>
+          <p>We approach these questions through interdisciplinary, participatory research on how NLP technology actually lands in society.</p>
+          <div class="tags"><span class="tag">Cognition</span><span class="tag">Fair access</span><span class="tag">Participatory research</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CURRENT STUDENTS ===================== -->
+<section id="people">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-label">CURRENT STUDENTS</span>
+      <h2>The people behind the work.</h2>
+      <p>Placeholder cards for now — swap in each photo and bio when you're ready.</p>
+    </div>
+
+    <div class="people-grid">
+
+      <article class="person">
+        <div class="person-photo">
+          <!-- Replace src with the student's photo, e.g. images/student-1.jpg -->
+          <img src="images/student-1.jpg" alt="Student Name"
+               onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;span class=\'ph\'&gt;PHOTO&lt;/span&gt;')">
+        </div>
+        <div class="person-info">
+          <h4>Student Name</h4>
+          <span class="role-chip">PhD Student</span>
+          <p>One or two sentences on what they work on in the lab and what they're excited about. Placeholder bio text.</p>
+        </div>
+      </article>
+
+      <article class="person">
+        <div class="person-photo">
+          <!-- Replace src with the student's photo, e.g. images/student-2.jpg -->
+          <img src="images/student-2.jpg" alt="Student Name"
+               onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;span class=\'ph\'&gt;PHOTO&lt;/span&gt;')">
+        </div>
+        <div class="person-info">
+          <h4>Student Name</h4>
+          <span class="role-chip">MSc Student</span>
+          <p>One or two sentences on what they work on in the lab and what they're excited about. Placeholder bio text.</p>
+        </div>
+      </article>
+
+      <article class="person">
+        <div class="person-photo">
+          <!-- Replace src with the student's photo, e.g. images/student-3.jpg -->
+          <img src="images/student-3.jpg" alt="Student Name"
+               onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;span class=\'ph\'&gt;PHOTO&lt;/span&gt;')">
+        </div>
+        <div class="person-info">
+          <h4>Student Name</h4>
+          <span class="role-chip">PhD Student</span>
+          <p>One or two sentences on what they work on in the lab and what they're excited about. Placeholder bio text.</p>
+        </div>
+      </article>
+
+      <article class="person">
+        <div class="person-photo">
+          <!-- Replace src with the student's photo, e.g. images/student-4.jpg -->
+          <img src="images/student-4.jpg" alt="Student Name"
+               onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;span class=\'ph\'&gt;PHOTO&lt;/span&gt;')">
+        </div>
+        <div class="person-info">
+          <h4>Student Name</h4>
+          <span class="role-chip">Undergraduate</span>
+          <p>One or two sentences on what they work on in the lab and what they're excited about. Placeholder bio text.</p>
+        </div>
+      </article>
+
+      <article class="person">
+        <div class="person-photo">
+          <!-- Replace src with the student's photo, e.g. images/student-5.jpg -->
+          <img src="images/student-5.jpg" alt="Student Name"
+               onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;span class=\'ph\'&gt;PHOTO&lt;/span&gt;')">
+        </div>
+        <div class="person-info">
+          <h4>Student Name</h4>
+          <span class="role-chip">MSc Student</span>
+          <p>One or two sentences on what they work on in the lab and what they're excited about. Placeholder bio text.</p>
+        </div>
+      </article>
+
+      <article class="person">
+        <div class="person-photo">
+          <!-- Replace src with the student's photo, e.g. images/student-6.jpg -->
+          <img src="images/student-6.jpg" alt="Student Name"
+               onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;span class=\'ph\'&gt;PHOTO&lt;/span&gt;')">
+        </div>
+        <div class="person-info">
+          <h4>Student Name</h4>
+          <span class="role-chip">Research Intern</span>
+          <p>One or two sentences on what they work on in the lab and what they're excited about. Placeholder bio text.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ALUMNI ===================== -->
+<section id="alumni">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-label">ALUMNI</span>
+      <h2>Where they are now.</h2>
+      <p>Placeholder list — replace names and destinations with your real alumni.</p>
+    </div>
+
+    <div class="alumni">
+      <div class="alum-row">
+        <span class="name">Alumnus Name <span class="deg">PhD</span></span>
+        <span class="now">Now <b>Role</b> at Organization</span>
+      </div>
+      <div class="alum-row">
+        <span class="name">Alumnus Name <span class="deg">MSc</span></span>
+        <span class="now">Now <b>Role</b> at Organization</span>
+      </div>
+      <div class="alum-row">
+        <span class="name">Alumnus Name <span class="deg">PhD</span></span>
+        <span class="now">Now <b>Role</b> at Organization</span>
+      </div>
+      <div class="alum-row">
+        <span class="name">Alumnus Name <span class="deg">MSc</span></span>
+        <span class="now">Now <b>Role</b> at Organization</span>
+      </div>
+      <div class="alum-row">
+        <span class="name">Alumnus Name <span class="deg">BSc</span></span>
+        <span class="now">Now <b>Role</b> at Organization</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== JOIN ===================== -->
+<section id="join" class="join">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-label">JOIN THE LAB</span>
+      <h2>Want to open up the black box with us?</h2>
+      <p>I'm always looking for highly motivated students who want to understand, steer, and align large language models — and who care about doing it responsibly.</p>
+    </div>
+
+    <div class="join-grid">
+      <div class="join-card u">
+        <h3>Undergraduate</h3>
+        <p>Honours thesis supervision and summer research internships for students ready to take on a real research problem.</p>
+      </div>
+      <div class="join-card g">
+        <h3>Graduate</h3>
+        <p>MSc and PhD supervision for students who want to make responsible AI the centre of their research.</p>
+      </div>
+    </div>
+
+    <div class="apply">
+      <p>Interested? Email me with your <b>resume</b>, an <b>unofficial transcript</b>, and a short note on the kind of work you most want to do — and why.</p>
+      <a class="btn" href="mailto:Kathleen.Fraser@uottawa.ca?subject=LENS%20Lab%20—%20Prospective%20Student">Email Dr. Fraser</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span><strong>LENS Lab</strong> — Language, Ethics, and Neural Systems · University of Ottawa</span>
+    <a href="mailto:Kathleen.Fraser@uottawa.ca">Kathleen.Fraser@uottawa.ca</a>
+  </div>
+</footer>
+
+<script>
+  const btn = document.getElementById('menuBtn');
+  const links = document.getElementById('navLinks');
+  btn.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  links.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => {
+      links.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+    })
+  );
+</script>
+
+</body>
+</html>
