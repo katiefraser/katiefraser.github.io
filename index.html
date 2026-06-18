@@ -1,297 +1,342 @@
-<!DOCTYPE HTML>
-<!--
-	Miniport by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Kathleen Fraser</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kathleen C. Fraser</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+  :root{
+    --bg:#FBFCFC;
+    --panel:#FFFFFF;
+    --ink:#13181B;
+    --muted:#5A6571;
+    --accent:#0E7C6B;
+    --accent-tint:#E3F1ED;
+    --line:#E5E9E8;
+    --grot:"Space Grotesk",system-ui,sans-serif;
+    --sans:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:var(--sans);font-size:16.5px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;text-underline-offset:3px;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 30px;}
 
-	</head>
-	<body class="is-preload">
+  .label{
+    font-family:var(--mono);font-size:.74rem;font-weight:500;color:var(--accent);
+    letter-spacing:.02em;margin:0 0 1rem;
+  }
+  .label::before{content:"// ";opacity:.6;}
+  h1,h2,h3{font-family:var(--grot);letter-spacing:-.01em;}
+  h2{font-weight:700;font-size:2rem;line-height:1.1;margin:0 0 .4rem;}
+  h3{font-weight:600;font-size:1.1rem;line-height:1.3;margin:0;}
 
-		<!-- Nav -->
-			<nav id="nav">
-				<ul class="container">
-					<li><a href="#top">Top</a></li>
-					<li><a href="#projects">Projects</a></li>
-					<li><a href="#publications">Publications</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#contact">Contact</a></li>
-				</ul>
-			</nav>
+  /* nav */
+  nav{
+    position:sticky;top:0;z-index:50;background:rgba(251,252,252,.9);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:15px;padding-bottom:15px;}
+  nav .mark{font-family:var(--grot);font-weight:700;font-size:.98rem;letter-spacing:-.01em;color:var(--ink);}
+  nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;flex-wrap:wrap;}
+  nav a{font-family:var(--mono);font-size:.8rem;color:var(--muted);}
+  nav a:hover{color:var(--accent);text-decoration:none;}
 
-		<!-- Home -->
-			<article id="top" class="wrapper style1">
-				<div class="container">
-					<div class="row">
-						<div class="col-4 col-5-large col-12-medium">
-							<span class="image fit"><img src="images/DSC_0421_cropped_2.jpg" alt="" /></span>
-						</div>
-						<div class="col-8 col-7-large col-12-medium">
-							<header>
-								<h1><strong>Kathleen C. Fraser</strong></h1>
-								<h3>Associate Professor, School of Electrical Engineering and Computer Science, University of Ottawa</h3>
-							</header>
-							<p> My research is in the area of natural language processing (NLP) and artificial intelligence (AI).
-								I'm particularly interested in issues related to ethical AI and AI safety, including bias and fairness, social stereotypes, deception, manipulation, and model evaluation. 
-							A large part of my research also focuses on NLP for healthcare, particularly the detection of early 
-							signs of cognitive impairment from speech and language features.   </p>
+  /* hero */
+  .hero{padding:70px 0 56px;border-bottom:1px solid var(--line);}
+  .hero-grid{display:grid;grid-template-columns:1fr 280px;gap:54px;align-items:start;}
+  .portrait{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;background:var(--accent-tint);border:1px solid var(--line);}
+  .hero h1{font-weight:700;font-size:3rem;line-height:1.02;margin:0 0 .6rem;}
+  .role{font-family:var(--mono);font-size:.9rem;color:var(--muted);line-height:1.55;margin:0 0 1.7rem;max-width:48ch;}
+  .lede{font-size:1.12rem;line-height:1.6;max-width:58ch;margin:0 0 2rem;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 1.5rem;}
+  .tag{font-family:var(--mono);font-size:.72rem;color:var(--accent);background:var(--accent-tint);padding:4px 10px;border-radius:4px;}
 
-							<h4> News and Announcements</h4>
-							<li> As of September 1, I will be taking a new job at University of Ottawa. Many fond farewells to my team at the NRC! </li>
-							<li> Check out our paper on <a href="https://aclanthology.org/2025.findings-acl.695.pdf"</a>detecting AI text on social media</a> (ACL Findings 2025) </li>
-							<li> New work with Intel Labs on <a href="https://aclanthology.org/2025.naacl-long.305/"</a>bias in large vision-language models</a> at NAACL 2025</li>
-							<li> Our <a href="https://www.jair.org/index.php/jair/article/view/16665">survey</a> on detecting AI-generated text has been published in the Journal of Artificial Intelligence Research.
-            						<li> Check out this Nature news article featuring our work: <a href="https://www.nature.com/articles/d41586-024-00674-9">AI image generators often give racist and sexist results: can they be fixed?</a> </li>
-  							</ul>
-							
-							
-					</div>
+  .news{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:24px 26px;}
+  .news ul{list-style:none;margin:0;padding:0;}
+  .news li{font-size:.92rem;color:var(--muted);padding:10px 0;border-bottom:1px dashed var(--line);}
+  .news li:last-child{border-bottom:0;}
+  .news li::before{content:"›";color:var(--accent);font-family:var(--mono);margin-right:.6em;font-weight:600;}
 
-				</div>
-			</article>
+  /* sections */
+  section.block{padding:62px 0;border-bottom:1px solid var(--line);}
+  .block-head{margin-bottom:36px;max-width:62ch;}
+  .block-head p{color:var(--muted);margin:.3rem 0 0;}
 
-		<!-- Projects -->
-			<article id="projects" class="wrapper style2">
-				<div class="container">
-					<header>
-						<h2>Current Projects</h2>
-						<p>Feel free to get in touch for more information or possible collaboration.</p>
-					</header>
-					<div class="row aln-center">
-						<div class="col-4 col-6-medium col-12-small">
-							<section class="box style1">
-								<span class="icon solid featured fa-brain"></span>
-								<h3>Cognitive Decline</h3>
-								<p>Algorithms to automatically detect speech and language markers of cognitive or mental state. </p>
-							</section>
-						</div>
-						<div class="col-4 col-6-medium col-12-small">
-							<section class="box style1">
-								<span class="icon solid featured fa-user-cog"></span>
-								<h3>Stereotyping and Bias</h3>
-								<p>Examining stereotyping and bias in social media text and in machine learning models.</p>
-							</section>
-						</div>
-						<div class="col-4 col-6-medium col-12-small">
-							<section class="box style1">
-								<span class="icon solid featured fa-robot"></span>
-								<h3>AI Safety</h3>
-								<p>Evaluating frontier AI models and fine-tuned models for safety risks, and designing mitigations.</p>
-							</section>
-						</div>
-					</div>
+  /* projects */
+  .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .project{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:26px 24px;position:relative;transition:transform .2s,box-shadow .2s,border-color .2s;}
+  .project:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 12px 28px -18px rgba(14,124,107,.5);}
+  .project .num{font-family:var(--mono);font-size:.74rem;color:var(--muted);}
+  .project .pic{font-size:1.4rem;color:var(--accent);margin:14px 0 16px;}
+  .project h3{margin-bottom:.4rem;}
+  .project p{font-size:.92rem;color:var(--muted);margin:0;}
 
-				</div>
-			</article>
+  /* publications */
+  .pubs{display:grid;grid-template-columns:repeat(3,1fr);gap:26px 22px;}
+  .pub{background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;}
+  .pub:hover{transform:translateY(-3px);box-shadow:0 14px 30px -20px rgba(0,0,0,.35);}
+  .pub .thumb{display:block;aspect-ratio:16/10;overflow:hidden;background:var(--accent-tint);}
+  .pub .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease;}
+  .pub:hover .thumb img{transform:scale(1.05);}
+  .pub .body{padding:16px 18px 20px;display:flex;flex-direction:column;gap:.45rem;flex:1;}
+  .pub h3{font-size:.98rem;line-height:1.32;}
+  .pub h3 a{color:var(--ink);}
+  .pub h3 a:hover{color:var(--accent);}
+  .pub .byline{font-family:var(--mono);font-size:.76rem;color:var(--muted);margin-top:auto;}
 
-		<!-- Publications -->
-			<article id="publications" class="wrapper style3">
-				<div class="container">
-					<header>
-						<h2>Selected Publications</h2>
-						<p>For an up-to-date list of publications, please see my <a href="https://scholar.google.ca/citations?user=uGeC7NMAAAAJ&hl=en">Google Scholar page</a>. </p>
-					</header>
-					<div class="row">
+  /* about */
+  .about p{max-width:74ch;font-size:1.02rem;}
 
-						
-                                               <div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="https://arxiv.org/abs/2402.05779" class="image featured"><img src="images/PAIRS.png" alt="" /></a>
-								<h3><a href="https://arxiv.org/abs/2402.05779">Examining Gender and Racial Bias in Large Vision-Language Models Using a Novel Dataset of Parallel Images</a></h3>
-								<p>Fraser & Kiritchenko (2024)</p>
+  /* contact */
+  .contact{padding:58px 0 26px;}
+  .contact-card{background:var(--ink);color:#EAF0EE;border-radius:12px;padding:42px 40px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;}
+  .contact-card .label{color:#7FD8C7;}
+  .contact-card h3{color:#fff;font-size:1.5rem;}
+  .contact-card a{color:#fff;}
+  .social{list-style:none;display:flex;gap:14px;padding:0;margin:0;}
+  .social a{
+    width:46px;height:46px;display:grid;place-items:center;border-radius:8px;
+    border:1px solid rgba(255,255,255,.2);color:#EAF0EE;font-size:1.05rem;transition:all .2s;
+  }
+  .social a:hover{background:var(--accent);border-color:var(--accent);text-decoration:none;transform:translateY(-2px);}
+  footer{padding:26px 0 48px;color:var(--muted);font-family:var(--mono);font-size:.76rem;}
+  footer a{color:var(--muted);}
 
-							</article>
-						</div>
-						
-						
-						
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="https://aclanthology.org/2023.woah-1.12.pdf" class="image featured"><img src="images/aporophobia.png" alt="" /></a>
-								<h3><a href="https://aclanthology.org/2023.woah-1.12.pdf">Aporophobia: An Overlooked Type of Toxic Language Targeting the Poor</a></h3>
-								<p>Kiritchenko, Curto, Nejadgholi, & Fraser (2023)</p>
+  @media (max-width:880px){
+    .hero-grid{grid-template-columns:1fr;gap:30px;}
+    .portrait{max-width:230px;order:-1;}
+    .projects,.pubs{grid-template-columns:1fr 1fr;}
+    .hero h1{font-size:2.4rem;}
+  }
+  @media (max-width:560px){
+    .projects,.pubs{grid-template-columns:1fr;}
+    nav ul{gap:16px;}
+    nav .mark{display:none;}
+    .contact-card{flex-direction:column;align-items:flex-start;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto;transition:none!important;}
+  }
+</style>
+</head>
+<body>
 
-							</article>
-						</div>
+<nav>
+  <div class="wrap">
+    <span class="mark">K. Fraser</span>
+    <ul>
+      <li><a href="#top">top</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#publications">publications</a></li>
+      <li><a href="#about">about</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </div>
+</nav>
 
-                                               <div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="https://openreview.net/pdf?id=UqvWNBQKf5" class="image featured"><img src="images/porr_wealthy.png" alt="" /></a>
-								<h3><a href="https://openreview.net/pdf?id=UqvWNBQKf5">A Friendly Face: Do Text-to-Image Systems Rely on Stereotypes when the Input is
-Under-Specified?</a></h3>
-								<p>Fraser, Nejadgholi, & Kiritchenko (2023)</p>
+<!-- Hero -->
+<header id="top" class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="label">researcher</p>
+      <h1>Kathleen C. Fraser</h1>
+      <p class="role">Associate Professor · School of Electrical Engineering and Computer Science · University of Ottawa</p>
+      <div class="tags">
+        <span class="tag">NLP</span>
+        <span class="tag">AI safety</span>
+        <span class="tag">bias &amp; fairness</span>
+        <span class="tag">model evaluation</span>
+        <span class="tag">NLP for health</span>
+      </div>
+      <p class="lede">My research is in natural language processing and artificial intelligence — with a focus on ethical AI and AI safety, including bias and fairness, social stereotypes, deception, manipulation, and model evaluation. A large part of my work also applies NLP to healthcare, detecting early signs of cognitive impairment from speech and language.</p>
+      <div class="news">
+        <p class="label">news</p>
+        <ul>
+          <li>As of September 1, I will be taking a new position at the University of Ottawa. Many fond farewells to my team at the NRC.</li>
+          <li>Our paper on <a href="https://aclanthology.org/2025.findings-acl.695.pdf">detecting AI text on social media</a> (ACL Findings 2025).</li>
+          <li>New work with Intel Labs on <a href="https://aclanthology.org/2025.naacl-long.305/">bias in large vision-language models</a> at NAACL 2025.</li>
+          <li>Our <a href="https://www.jair.org/index.php/jair/article/view/16665">survey</a> on detecting AI-generated text is published in the Journal of Artificial Intelligence Research.</li>
+          <li>Nature news featuring our work: <a href="https://www.nature.com/articles/d41586-024-00674-9">AI image generators often give racist and sexist results: can they be fixed?</a></li>
+        </ul>
+      </div>
+    </div>
+    <img class="portrait" src="images/DSC_0421_cropped_2.jpg" alt="Kathleen C. Fraser" />
+  </div>
+</header>
 
-							</article>
-						</div>
+<!-- Projects -->
+<section id="projects" class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <p class="label">current projects</p>
+      <h2>What I&rsquo;m working on</h2>
+      <p>Feel free to get in touch for more information or possible collaboration.</p>
+    </div>
+    <div class="projects">
+      <div class="project">
+        <div class="num">01</div>
+        <div class="pic"><i class="fa-solid fa-brain"></i></div>
+        <h3>Cognitive Decline</h3>
+        <p>Algorithms to automatically detect speech and language markers of cognitive or mental state.</p>
+      </div>
+      <div class="project">
+        <div class="num">02</div>
+        <div class="pic"><i class="fa-solid fa-user-gear"></i></div>
+        <h3>Stereotyping &amp; Bias</h3>
+        <p>Examining stereotyping and bias in social media text and in machine learning models.</p>
+      </div>
+      <div class="project">
+        <div class="num">03</div>
+        <div class="pic"><i class="fa-solid fa-robot"></i></div>
+        <h3>AI Safety</h3>
+        <p>Evaluating frontier and fine-tuned models for safety risks, and designing mitigations.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-						
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="https://www.frontiersin.org/articles/10.3389/frai.2022.826207/full" class="image featured"><img src="images/Fig2a.png" alt="" /></a>
-								<h3><a href="https://www.frontiersin.org/articles/10.3389/frai.2022.826207/full">Computational Modeling of Stereotype Content in Text</a></h3>
-								<p>Fraser, Kiritchenko, & Nejadgholi (2022)</p>
+<!-- Publications -->
+<section id="publications" class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <p class="label">selected publications</p>
+      <h2>Selected publications</h2>
+      <p>For an up-to-date list, please see my <a href="https://scholar.google.ca/citations?user=uGeC7NMAAAAJ&hl=en">Google Scholar page</a>.</p>
+    </div>
+    <div class="pubs">
+      <article class="pub">
+        <a class="thumb" href="https://arxiv.org/abs/2402.05779"><img src="images/PAIRS.png" alt="" /></a>
+        <div class="body">
+          <h3><a href="https://arxiv.org/abs/2402.05779">Examining Gender and Racial Bias in Large Vision-Language Models Using a Novel Dataset of Parallel Images</a></h3>
+          <p class="byline">Fraser &amp; Kiritchenko · 2024</p>
+        </div>
+      </article>
+      <article class="pub">
+        <a class="thumb" href="https://aclanthology.org/2023.woah-1.12.pdf"><img src="images/aporophobia.png" alt="" /></a>
+        <div class="body">
+          <h3><a href="https://aclanthology.org/2023.woah-1.12.pdf">Aporophobia: An Overlooked Type of Toxic Language Targeting the Poor</a></h3>
+          <p class="byline">Kiritchenko, Curto, Nejadgholi, &amp; Fraser · 2023</p>
+        </div>
+      </article>
+      <article class="pub">
+        <a class="thumb" href="https://openreview.net/pdf?id=UqvWNBQKf5"><img src="images/porr_wealthy.png" alt="" /></a>
+        <div class="body">
+          <h3><a href="https://openreview.net/pdf?id=UqvWNBQKf5">A Friendly Face: Do Text-to-Image Systems Rely on Stereotypes when the Input is Under-Specified?</a></h3>
+          <p class="byline">Fraser, Nejadgholi, &amp; Kiritchenko · 2023</p>
+        </div>
+      </article>
+      <article class="pub">
+        <a class="thumb" href="https://www.frontiersin.org/articles/10.3389/frai.2022.826207/full"><img src="images/Fig2a.png" alt="" /></a>
+        <div class="body">
+          <h3><a href="https://www.frontiersin.org/articles/10.3389/frai.2022.826207/full">Computational Modeling of Stereotype Content in Text</a></h3>
+          <p class="byline">Fraser, Kiritchenko, &amp; Nejadgholi · 2022</p>
+        </div>
+      </article>
+      <article class="pub">
+        <a class="thumb" href="https://arxiv.org/pdf/2205.12771.pdf"><img src="images/mft_v2.png" alt="" /></a>
+        <div class="body">
+          <h3><a href="https://arxiv.org/pdf/2205.12771.pdf">Does Moral Code Have a Moral Code? Probing Delphi&rsquo;s Moral Philosophy</a></h3>
+          <p class="byline">Fraser, Kiritchenko, &amp; Balkir · 2022</p>
+        </div>
+      </article>
+      <article class="pub">
+        <a class="thumb" href="https://arxiv.org/pdf/2205.03302.pdf"><img src="images/necc_suff.png" alt="" /></a>
+        <div class="body">
+          <h3><a href="https://arxiv.org/pdf/2205.03302.pdf">Necessity and Sufficiency for Explaining Text Classifiers: A Case Study in Hate Speech Detection</a></h3>
+          <p class="byline">Balkir, Nejadgholi, Fraser, &amp; Kiritchenko · 2022</p>
+        </div>
+      </article>
+      <article class="pub">
+        <a class="thumb" href="https://dl.acm.org/doi/pdf/10.1613/jair.1.12590"><img src="images/pipeline9-2.jpg" alt="" /></a>
+        <div class="body">
+          <h3><a href="https://dl.acm.org/doi/pdf/10.1613/jair.1.12590">Confronting Abusive Language Online: A Survey from the Ethical and Human Rights Perspective</a></h3>
+          <p class="byline">Kiritchenko, Nejadgholi, &amp; Fraser · 2021</p>
+        </div>
+      </article>
+      <article class="pub">
+        <a class="thumb" href="https://arxiv.org/abs/2110.09421"><img src="images/figure2_2.png" alt="" /></a>
+        <div class="body">
+          <h3><a href="https://arxiv.org/abs/2110.09421">Measuring Cognitive Status from Speech in a Smart Home Environment</a></h3>
+          <p class="byline">Fraser &amp; Komeili · 2021</p>
+        </div>
+      </article>
+      <article class="pub">
+        <a class="thumb" href="https://www.frontiersin.org/articles/10.3389/fnagi.2019.00205/full"><img src="images/multimodal.jpeg" alt="" /></a>
+        <div class="body">
+          <h3><a href="https://www.frontiersin.org/articles/10.3389/fnagi.2019.00205/full">Predicting MCI Status From Multimodal Language Data Using Cascaded Classifiers</a></h3>
+          <p class="byline">Fraser, Lundholm Fors, Eckerstr&ouml;m, &Ouml;hman, &amp; Kokkinakis · 2019</p>
+        </div>
+      </article>
+      <article class="pub">
+        <a class="thumb" href="https://aclanthology.org/W19-1308/"><img src="images/hitchbot.png" alt="" /></a>
+        <div class="body">
+          <h3><a href="https://aclanthology.org/W19-1308/">How Do We Feel When a Robot Dies? Emotions Expressed on Twitter Before and After hitchBOT&rsquo;s Destruction</a></h3>
+          <p class="byline">Fraser, Zeller, Smith, Mohammad, &amp; Rudzicz · 2019</p>
+        </div>
+      </article>
+      <article class="pub">
+        <a class="thumb" href="https://aclanthology.org/N19-1367/"><img src="images/multilingual.png" alt="" /></a>
+        <div class="body">
+          <h3><a href="https://aclanthology.org/N19-1367/">Multilingual Prediction of Alzheimer&rsquo;s Disease Through Domain Adaptation and Concept-Based Language Modelling</a></h3>
+          <p class="byline">Fraser et al. · 2019</p>
+        </div>
+      </article>
+      <article class="pub">
+        <a class="thumb" href="https://aclanthology.org/D17-1107/"><img src="images/eyetracking.png" alt="" /></a>
+        <div class="body">
+          <h3><a href="https://aclanthology.org/D17-1107/">An Analysis of Eye-Movements During Reading for the Detection of Mild Cognitive Impairment</a></h3>
+          <p class="byline">Fraser, Lundholm Fors, Kokkinakis, &amp; Nordlund · 2017</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
-							</article>
-						</div>
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="https://arxiv.org/pdf/2205.12771.pdf" class="image featured"><img src="images/mft_v2.png" alt="" /></a>
-								<h3><a href="https://arxiv.org/pdf/2205.12771.pdf">Does Moral Code Have a Moral Code? Probing Delphi's Moral Philosophy</a></h3>
-								<p>Fraser, Kiritchenko,& Balkir (2022)</p>
-							</article>
-						</div>
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="https://arxiv.org/pdf/2205.03302.pdf" class="image featured"><img src="images/necc_suff.png" alt="" /></a>
-								<h3><a href="https://arxiv.org/pdf/2205.03302.pdf">Necessity and Sufficiency for Explaining Text Classifiers: A Case Study in Hate Speech Detection</a></h3>
-								<p>Balkir, Nejadgholi, Fraser, & Kiritchenko (2022)</p>
-							</article>
-						</div>
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="https://dl.acm.org/doi/pdf/10.1613/jair.1.12590" class="image featured"><img src="images/pipeline9-2.jpg" alt="" /></a>
-								<h3><a href=https://dl.acm.org/doi/pdf/10.1613/jair.1.12590">Confronting abusive language online: A survey from the ethical and human rights perspective</a></h3>
-								<p>Kiritchenko, Nejadgholi, & Fraser (2021)</p>
-							</article>
-						</div>
-						
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="https://arxiv.org/abs/2110.09421" class="image featured"><img src="images/figure2_2.png" alt="" /></a>
-								<h3><a href="https://arxiv.org/abs/2110.09421">Measuring Cognitive Status from Speech in a Smart Home Environment</a></h3>
-								<p>Fraser & Komeili (2021)</p>
-							</article>
-						</div>
-						
-							<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="https://www.frontiersin.org/articles/10.3389/fnagi.2019.00205/full" class="image featured"><img src="images/multimodal.jpeg" alt="" /></a>
-								<h3><a href="https://www.frontiersin.org/articles/10.3389/fnagi.2019.00205/full">Predicting MCI Status From Multimodal Language Data Using Cascaded Classifiers</a></h3>
-								<p>Fraser, Lundholm Fors, Eckerström, Öhman, & Kokkinakis (2019)</p>
-							</article>
-						</div>
-						
+<!-- About -->
+<section id="about" class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <p class="label">about</p>
+      <h2>Academic bio</h2>
+    </div>
+    <div class="about">
+      <p>Dr. Kathleen Fraser is an Associate Professor in the School of Electrical Engineering and Computer Science at the University of Ottawa, where she investigates language technologies for healthcare and social good. Her recent research has focused on social and ethical issues in natural language processing, such as identifying stereotypes and implicitly abusive language in social media text, as well as improving the interpretability and transparency of machine learning models. She is also active in developing methods to help detect early signs of cognitive decline from speech patterns and eye movements.</p>
+      <p>Previously, Dr. Fraser worked as a Research Officer at the National Research Council of Canada. She received her PhD in Computer Science from the <a href="https://www.cs.toronto.edu/compling/">University of Toronto</a> in 2016, under the supervision of Graeme Hirst and Jed Meltzer, and was awarded the <a href="https://www.utoronto.ca/news/u-t-grad-receives-governor-general-s-gold-medal-work-ai-and-health-care">Governor General&rsquo;s Gold Academic Medal</a>.</p>
+    </div>
+  </div>
+</section>
 
-					<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="https://aclanthology.org/W19-1308/" class="image featured"><img src="images/hitchbot.png" alt="" /></a>
-								<h3><a href="https://aclanthology.org/W19-1308/">How do we feel when a robot dies? Emotions expressed on Twitter before and after hitchBOT’s destruction</a></h3>
-								<p>Fraser, Zeller, Smith, Mohammad, & Rudzicz (2019)</p>
-							</article>
-						</div>
+<!-- Contact -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="contact-card">
+      <div>
+        <p class="label">contact</p>
+        <h3><a href="mailto:kathleen.fraser@uottawa.ca">kathleen.fraser@uottawa.ca</a></h3>
+      </div>
+      <ul class="social">
+        <li><a href="https://www.linkedin.com/in/kathleen-c-fraser-9b284489/" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a></li>
+        <li><a href="https://github.com/katiefraser" aria-label="GitHub"><i class="fa-brands fa-github"></i></a></li>
+        <li><a href="https://www.researchgate.net/profile/Kathleen-Fraser-2" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="https://aclanthology.org/N19-1367/" class="image featured"><img src="images/multilingual.png" alt="" /></a>
-								<h3><a href="https://aclanthology.org/N19-1367/">Multilingual Prediction of Alzheimer’s Disease Through Domain Adaptation 
-								and Concept-Based Language Modelling</a></h3>
-								<p>Fraser et al. (2019)</p>
-							</article>
-						</div>
-						
-						
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="https://aclanthology.org/D17-1107/" class="image featured"><img src="images/eyetracking.png" alt="" /></a>
-								<h3><a href="https://aclanthology.org/D17-1107/">An analysis of eye-movements during reading for the detection of mild cognitive impairment</a></h3>
-								<p>Fraser, Lundholm Fors, Kokkinakis, & Nordlund (2017)</p>
-							</article>
-						</div>						
-						
-						
-					</div>
-					
-					<!--
-					<footer>
-						<p>Lorem ipsum dolor sit sapien vestibulum ipsum primis?</p>
-						<a href="#contact" class="button large scrolly">Get in touch with me</a>
-					</footer>
-					-->
-				</div>
-			</article>
-			
-			
-		<!-- about -->
-			<article id="about" class="wrapper style3">
-				<div class="container">
-					<header>
-						<h2>About</h2>
-						<p> <strong>Academic bio:</strong> Dr. Kathleen Fraser is an Associate Professor in the School of 
-						Electrical Engineering and Computer Science at the University of Ottawa, where she investigates language technologies for healthcare 
-						and social good. Her recent research has focused on social and ethical issues in natural language 
-						processing, such as identifying stereotypes and implicitly abusive language in social media text, 
-						as well as improving the interpretability and transparency of machine learning models.  She is also 
-						active in developing methods to help detect early signs of cognitive decline from speech patterns 
-						and eye movements. Previously, Dr. Fraser worked as a Research Officer at the National Research Council 
-						of Canada.She received her PhD in Computer Science from the <a href="https://www.cs.toronto.edu/compling/">University of Toronto</a> in 
-						2016, under the supervision of Graeme Hirst and Jed Meltzer, 
-						and was awarded the <a href="https://www.utoronto.ca/news/u-t-grad-receives-governor-general-s-gold-medal-work-ai-and-health-care">Governor General's Gold Academic Medal</a>. </p>
-					</header>
-					
+<footer>
+  <div class="wrap">&copy; Kathleen Fraser. All rights reserved.</div>
+</footer>
 
-				</div>
-			</article>
-
-	
-			
-			
-		<!-- Contact -->
-			<article id="contact" class="wrapper style4">
-				<div class="container medium">
-					<header>
-						
-					
-						<div class="col-12">
-							<hr />
-							<h3>Contact: kathleen.fraser@uottawa.ca</h3>
-							<ul class="social">
-								<li><a href="https://www.linkedin.com/in/kathleen-c-fraser-9b284489/" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-								<li><a href="https://github.com/katiefraser" class="icon brands fa-github"><span class="label">Github</span></a></li>
-								<li><a href="https://www.researchgate.net/profile/Kathleen-Fraser-2" class="icon brands fa-researchgate"><span class="label">ResearchGate</span></a></li>
-
-								<!--
-								<li><a href="#" class="icon solid fa-rss"><span>RSS</span></a></li>
-								<li><a href="#" class="icon brands fa-instagram"><span>Instagram</span></a></li>
-								<li><a href="#" class="icon brands fa-foursquare"><span>Foursquare</span></a></li>
-								<li><a href="#" class="icon brands fa-skype"><span>Skype</span></a></li>
-								<li><a href="#" class="icon brands fa-soundcloud"><span>Soundcloud</span></a></li>
-								<li><a href="#" class="icon brands fa-youtube"><span>YouTube</span></a></li>
-								<li><a href="#" class="icon brands fa-blogger"><span>Blogger</span></a></li>
-								<li><a href="#" class="icon brands fa-flickr"><span>Flickr</span></a></li>
-								<li><a href="#" class="icon brands fa-vimeo"><span>Vimeo</span></a></li>
-								-->
-							</ul>
-							<hr />
-						</div>
-					</div>
-					<footer>
-						<ul id="copyright">
-							<li>&copy; Kathleen Fraser. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-						</ul>
-					</footer>
-				</div>
-			</article>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+</body>
 </html>
-
-
-
-
-
-
-
